@@ -1,0 +1,90 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Power Plant API",
+    "version": "1.0.0",
+    "description": "API for querying U.S. power plant data"
+  },
+  "servers": [
+    {
+      "url": "/api/v1"
+    }
+  ],
+  "paths": {
+    "/power-plants": {
+      "get": {
+        "summary": "Get all power plants, or filter by state or top N",
+        "tags": ["Power Plants"],
+        "parameters": [
+          {
+            "name": "state",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "CA"
+            },
+            "description": "Filter plants by state abbreviation"
+          },
+          {
+            "name": "n",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "example": 10,
+              "minimum": 1
+            },
+            "description": "Return only top N plants sorted by generation"
+          }
+        ],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of plants"
+          },
+          "401": {
+            "description": "Unauthorized – Invalid API Key"
+          }
+        }
+      }
+    },
+    "/power-plants/states": {
+      "get": {
+        "summary": "Get all U.S. state codes with power plants",
+        "tags": ["Power Plants"],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of state abbreviations"
+          },
+          "401": {
+            "description": "Unauthorized – Invalid API Key"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKeyAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "API_KEY"
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKeyAuth": []
+    }
+  ]
+}
