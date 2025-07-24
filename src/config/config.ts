@@ -15,6 +15,6 @@ export const CONFIG = {
   API_VERSION: "v1",
   API_KEY: process.env.API_KEY || 'your-secure-key',
   RATE_LIMIT_WINDOW_MS: 15 * 60 * 1000, // 15 minutes
-  RATE_LIMIT_MAX: 10, // limit each IP to 100 requests per windowMs
+  RATE_LIMIT_MAX: 100, // limit each IP to 100 requests per windowMs
   LOG_LEVEL: process.env.LOG_LEVEL || 'debug',
 };

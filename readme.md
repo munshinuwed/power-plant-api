@@ -17,3 +17,15 @@ A scalable and production-ready Node.js/TypeScript API for publicly available U.
 
 ## 📦 Install & Run
 
+local development
+
+npm run build
+npm run start or npm run dev
+
+deployment
+
+Build docker image and run container:
+
+docker build -t power-plant-api .
+docker run -p 3000:3000 power-plant-api
+

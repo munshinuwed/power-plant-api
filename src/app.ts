@@ -14,17 +14,19 @@ export function createApp(): Express {
   const app = express();
 
   // CORS setup: Only allow specific origins
-  app.use(cors({
-    origin: (origin, callback) => {
-      if (!origin || CONFIG.ALLOWED_ORIGINS.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'), false);
-      }
-    },
-    methods: ['GET'], // Restrict to needed methods
-    credentials: true,
-  }));
+  // app.use(cors({
+  //   origin: (origin, callback) => {
+  //     if (!origin || CONFIG.ALLOWED_ORIGINS.includes(origin)) {
+  //       callback(null, true);
+  //     } else {
+  //       callback(new Error('Not allowed by CORS'), false);
+  //     }
+  //   },
+  //   methods: ['GET'], // Restrict to needed methods
+  //   credentials: true,
+  // }));
+
+  app.use(cors());
 
   // Basic Auth middleware for all routes
 //   app.use(basicAuth);
